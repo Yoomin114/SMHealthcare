@@ -1,0 +1,10 @@
+[Exercises] 
+yoga - 60 kcal
+Total calories burned: 60 kcal 
+
+[Diets] 
+Total calories intake: 0 kcal 
+
+[Total] 
+Basal metabolic rate: 1300 kcal
+The remaining calories: -1360 kcal
