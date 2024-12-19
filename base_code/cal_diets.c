@@ -34,8 +34,8 @@ void loadDiets(const char* DIETFILEPATH) {
     }
 
      // ToCode: to read a list of the diets from the given file
-    while () {
-    	
+    while (fscanf(file, "%s %d", diet_list[diet_list_size].name, &diet_list[diet_list_size].calories) == 2) {
+    	diet_list_size++;	
         if (diet_list_size >= MAX_DIETS){
         	break;
 		}
