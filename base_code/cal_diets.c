@@ -38,7 +38,7 @@ void loadDiets(const char* DIETFILEPATH) {
     
     char name[MAX_FOOD_NAME_LEN]; // to store the name of the food
     int calories;
-    while (fscanf(file, "%s - %d kcal", name, &calories) == 2) {
+    while (fscanf(file, "%s %d", name, &calories) == 2) {
     	// Read what is saved as "(food name) - (calorie) kcal" and save it to name and calories.
 		// Make sure you read the two items (name and calories) well at this time.
         

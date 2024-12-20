@@ -39,7 +39,7 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     char name[MAX_EXERCISE_NAME_LEN]; // to store the name of the exercise
     int calories;
     
-    while (fscanf(file, "%s - %d kcal", name, &calories) == 2) {
+    while (fscanf(file, "%s %d", name, &calories) == 2) {
         // Read what is saved as "(exercise name) - (calorie) kcal" and save it to name and calories.
 		// Make sure you read the two items (name and calories) well at this time.
         
