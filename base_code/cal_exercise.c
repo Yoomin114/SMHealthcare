@@ -114,12 +114,11 @@ void inputExercise(HealthData* health_data) {
             choice--; // Adjust index to match the array
             // Read and output the selected exercise in the field storing the name and calories of the exercise selected by the user.
             printf("Selected exercise: '%s' (%d kcal/min)\n", exercise_list[choice].name, exercise_list[choice].calories_burned_per_minute);
-
-            // Input and validate duration
-            printf("Enter the duration of the exercise (in min.): ");
-            
+			
 			while (1) {
-				
+				// To enter the duration of the exercise
+            	// Input and validate duration
+				printf("Enter the duration of the exercise (in min.): ");
 				// Add verification logic to prevent negative or zero exercise times.	
                 if (scanf("%d", &duration) != 1 || duration <= 0) {
                     printf("Invalid duration. Please enter a positive number.\n");
@@ -129,6 +128,7 @@ void inputExercise(HealthData* health_data) {
                 }
             }
 
+			// ToCode: to enter the selected exercise and total calcories burned in the health data
             // Calculate the calories from the selected exercise and the time entered to store the total calories burned in the variable
             int calories_burned = duration * exercise_list[choice].calories_burned_per_minute;
             
