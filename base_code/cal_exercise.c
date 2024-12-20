@@ -34,31 +34,33 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     }
 
     // ToCode: to read a list of the exercises from the given file
-    char line[100]; // To store each line from the file
+    // Read exercise data from a file.
     
-    while (fgets(line, sizeof(line), file) != NULL) {
-    	
-        // Parse the line: "<exercise_name> - <calories> kcal"
-        char name[MAX_EXERCISE_NAME_LEN];
-        int calories;
+    
+    char name[MAX_EXERCISE_NAME_LEN]; // to store the name of the exercise
+    int calories;
+    
+    while (fscanf(file, "%s - %d kcal", name, &calories) == 2) {
+        // Read what is saved as "(exercise name) - (calorie) kcal" and save it to name and calories.
+		// Make sure you read the two items (name and calories) well at this time.
         
-		// Extract the name and calories using sscanf
-        if (sscanf(line, "%s - %d kcal", name, &calories) == 2) {
-        	// Store the parsed data in the exercise_list
-            strncpy(exercise_list[exercise_list_size].name, name, MAX_EXERCISE_NAME_LEN);
-            exercise_list[exercise_list_size].calories_burned_per_minute = calories;
-            exercise_list_size++;
-
-            // Stop if the list exceeds the maximum allowed size
-            if (exercise_list_size >= MAX_EXERCISES) {
-                printf("Exercise list is full. Maximum %d exercises are supported.\n", MAX_EXERCISES);
-                break;
-            }    
-        } 
-		else {
-            printf("Error parsing line: %s", line); // Handle incorrect format
+        // Copy the string from name to execise_list[exercise_list_size].name using the strncpy (destination, source, length to copy) function
+		strncpy(exercise_list[exercise_list_size].name, name, MAX_EXERCISE_NAME_LEN - 1);
+        
+        // Explicitly add null characters at the end of a string so that the string can end with null characters
+		exercise_list[exercise_list_size].name[MAX_EXERCISE_NAME_LEN - 1] = '\0';
+        
+        // // Save the calories stored in the calories in the 'calories_burned_per_minute'.
+        exercise_list[exercise_list_size].calories_burned_per_minute = calories;
+        exercise_list_size++; // 
+        
+        // Stop when the maximum number of exercises is reached.
+        if (exercise_list_size >= MAX_EXERCISES){
+            break;
         }
     }
+
+    fclose(file);
 }
 
 
@@ -85,7 +87,7 @@ void inputExercise(HealthData* health_data) {
     // ToCode: to provide the options for the exercises to be selected
     // Display exercise list
     printf("[Exercises]\n");
-    for (int i = 0; i < exercise_list_size; i++) {
+    for (i = 0; i < exercise_list_size; i++) {
         printf("%d. %s - %d kcal\n", i + 1, exercise_list[i].name, exercise_list[i].calories_burned_per_minute);
     }
     printf("0. Exit\n\n");
@@ -131,9 +133,11 @@ void inputExercise(HealthData* health_data) {
 			// ToCode: to enter the selected exercise and total calcories burned in the health data
             // Calculate the calories from the selected exercise and the time entered to store the total calories burned in the variable
             int calories_burned = duration * exercise_list[choice].calories_burned_per_minute;
+            health_data->calories_burned += calories_burned;   //Use the pointer to modify the calories_burned value of the HealthData structure
             
-            //Use the pointer to modify the calories_burned value of the HealthData structure.
-            health_data->calories_burned += calories_burned;
+            // Update health data with selected exercise and calories burned
+    		strncpy(health_data->exercise_name, exercise_list[choice].name, MAX_EXERCISE_NAME_LEN - 1);
+    		health_data->exercise_name[MAX_EXERCISE_NAME_LEN - 1] = '\0'; // Ensure null-termination
 
             printf("Calories burned: %d kcal\n", calories_burned);
             return;
