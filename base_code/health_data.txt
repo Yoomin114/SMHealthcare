@@ -1,10 +1,12 @@
 [Exercises] 
-pilates - 4 kcal
-Total Calories Burned - 1256 kcal
+running - 11 kcal
+Total Calories Burned - 18051 kcal
 
 [Diets] 
-Total Calories Intake - 1895 kcal
+chicken - 925 kcal
+pizza - 900 kcal
+Total Calories Intake - 1825 kcal
 
 [Total] 
 Basal metabolic rate - 1300 kcal
-The remaining calories - -661 kcal
+The remaining calories - -17526 kcal
