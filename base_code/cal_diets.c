@@ -123,7 +123,8 @@ void inputDiet(HealthData* health_data) {
     // Use the pointer to modify the diet_name value of the HealthData structure
 	strncpy(health_data->diet[health_data->diet_count].food_name, diet_list[choice].food_name, MAX_FOOD_NAME_LEN - 1);
 	health_data->diet[health_data->diet_count].food_name[MAX_FOOD_NAME_LEN - 1] = '\0'; // Ensure null-termination
-
+	health_data->diet_count++;
+	
     // ToCode: to enter the total calories intake in the health data
     // Update total calories intake in health data
 	health_data->total_calories_intake += diet_list[choice].calories_intake;
