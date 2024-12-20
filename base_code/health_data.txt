@@ -1,10 +1,15 @@
 [Exercises] 
-yoga - 60 kcal
-Total calories burned: 60 kcal 
+walking - 120 kcal
+running - 440 kcal
+Total calories burned: 560 kcal 
 
 [Diets] 
-Total calories intake: 0 kcal 
+rice - 600 kcal
+salad - 70 kcal
+pizza - 900 kcal
+chicken - 925 kcal
+Total calories intake: 2495 kcal 
 
 [Total] 
 Basal metabolic rate: 1300 kcal
-The remaining calories: -1360 kcal
+The remaining calories: 635 kcal
