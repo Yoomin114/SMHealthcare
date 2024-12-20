@@ -110,7 +110,7 @@ void inputDiet(HealthData* health_data) {
 		// The selected number is greater than or equal to 1 and corresponds to the number in the diet list
         if (choice >= 1 && choice <= diet_list_size) {
             choice--; // Adjust index to match the array
-            printf("Selected diet: %s - %d kcal\n", diet_list[choice].food_name, diet_list[choice].calories_intake);
+            printf("\nSelected diet: %s - %d kcal\n", diet_list[choice].food_name, diet_list[choice].calories_intake);
             break;
         }
 		else {

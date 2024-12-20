@@ -114,7 +114,7 @@ void inputExercise(HealthData* health_data) {
         if (choice >= 1 && choice <= exercise_list_size) {
             choice--; // Adjust index to match the array
             // Read and output the selected exercise in the field storing the name and calories of the exercise selected by the user.
-            printf("Selected exercise: '%s' (%d kcal/min)\n", exercise_list[choice].exercise_name, exercise_list[choice].calories_burned_per_minute);
+            printf("\nSelected exercise: '%s' (%d kcal/min)\n", exercise_list[choice].exercise_name, exercise_list[choice].calories_burned_per_minute);
 			
 			while (1) {
 				// To enter the duration of the exercise
@@ -152,7 +152,7 @@ void inputExercise(HealthData* health_data) {
         	}
             
             // Display the total calories burned for this exercise session
-			printf("Total calories burned - %d kcal\n", calories_burned);
+			printf("\nTotal calories burned - %d kcal\n", calories_burned);
             return;
 		} 
 			
