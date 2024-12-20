@@ -44,10 +44,10 @@ void loadExercises(const char* EXERCISEFILEPATH) {
 		// Make sure you read the two items (name and calories) well at this time.
         
         // Copy the string from name to execise_list[exercise_list_size].name using the strncpy (destination, source, length to copy) function
-		strncpy(exercise_list[exercise_list_size].name, name, MAX_EXERCISE_NAME_LEN - 1);
+		strncpy(exercise_list[exercise_list_size].exercise_name, name, MAX_EXERCISE_NAME_LEN - 1);
         
         // Explicitly add null characters at the end of a string so that the string can end with null characters
-		exercise_list[exercise_list_size].name[MAX_EXERCISE_NAME_LEN - 1] = '\0';
+		exercise_list[exercise_list_size].exercise_name[MAX_EXERCISE_NAME_LEN - 1] = '\0';
         
         // Save the calories stored in the calories in the 'calories_burned_per_minute'.
         exercise_list[exercise_list_size].calories_burned_per_minute = calories;
@@ -87,7 +87,7 @@ void inputExercise(HealthData* health_data) {
     // Display exercise list
     printf("[Exercises]\n");
     for (i = 0; i < exercise_list_size; i++) {
-        printf("%d. %s - %d kcal\n", i + 1, exercise_list[i].name, exercise_list[i].calories_burned_per_minute);
+        printf("%d. %s - %d kcal\n", i + 1, exercise_list[i].exercise_name, exercise_list[i].calories_burned_per_minute);
     }
     printf("0. Exit\n\n");
     
@@ -114,7 +114,7 @@ void inputExercise(HealthData* health_data) {
         if (choice >= 1 && choice <= exercise_list_size) {
             choice--; // Adjust index to match the array
             // Read and output the selected exercise in the field storing the name and calories of the exercise selected by the user.
-            printf("Selected exercise: '%s' (%d kcal/min)\n", exercise_list[choice].name, exercise_list[choice].calories_burned_per_minute);
+            printf("Selected exercise: '%s' (%d kcal/min)\n", exercise_list[choice].exercise_name, exercise_list[choice].calories_burned_per_minute);
 			
 			while (1) {
 				// To enter the duration of the exercise
@@ -132,15 +132,26 @@ void inputExercise(HealthData* health_data) {
 			// ToCode: to enter the selected exercise and total calcories burned in the health data
             // Calculate the calories from the selected exercise and the time entered to store the total calories burned in the variable
             int calories_burned = duration * exercise_list[choice].calories_burned_per_minute;
-            health_data->calories_burned += calories_burned;   // Use the pointer to modify the calories_burned value of the HealthData structure
+            health_data->total_calories_burned += calories_burned;   // Use the pointer to modify the calories_burned value of the HealthData structure
             
             // Update health data with selected exercise and calories burned
-    		strncpy(health_data->exercise_name, exercise_list[choice].name, MAX_EXERCISE_NAME_LEN - 1);
-    		health_data->exercise_name[MAX_EXERCISE_NAME_LEN - 1] = '\0'; // Ensure null-termination
-
-            printf("Total calories burned - %d kcal\n", calories_burned);
+    		if (health_data->exercise_count < MAX_EXERCISES) {
+            	strncpy(health_data->exercises[health_data->exercise_count].exercise_name, 
+            	exercise_list[choice].exercise_name, MAX_EXERCISE_NAME_LEN - 1);
+            	
+				health_data->exercises[health_data->exercise_count].exercise_name[MAX_EXERCISE_NAME_LEN - 1] = '\0';
+				health_data->exercises[health_data->exercise_count].calories_burned_per_minute = exercise_list[choice].calories_burned_per_minute;
+            	health_data->exercise_count++;
+        	}
+			else {
+            printf("Maximum number of exercises reached.\n");
+        	}
+            
+			printf("Total calories burned - %d kcal\n", calories_burned);
             return;
-        } 
+       		
+			} 
+			
 		else {
             printf("Invalid choice. Please select a valid exercise number.\n");
         }
