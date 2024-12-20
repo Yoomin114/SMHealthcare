@@ -48,18 +48,20 @@ int main() {
         switch (choice) {
             case 1:
             	inputExercise(&health_data); // Call function to input exercise data
-                break;
+            	saveData(HEALTHFILEPATH, &health_data);
+				break;
                 
             case 2:
             	inputDiet(&health_data);     // Call function to input diet data
-                break;
+                saveData(HEALTHFILEPATH, &health_data);
+				break;
                 
             case 3:
             	printHealthData(&health_data); // Display logged exercise and diet information
                 break;
                 
             case 4:
-            	
+            	saveData(HEALTHFILEPATH, &health_data);
     			printf("Exit the system.\n"); // Exit message
     			printf("=======================================================================\n");
                 break;
