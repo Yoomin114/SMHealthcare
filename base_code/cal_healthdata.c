@@ -35,7 +35,7 @@ void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
     // ToCode: to save the chosen exercise and total calories burned 
     fprintf(file, "[Exercises] \n");
     // Save the chosen exercise and total calories burned
-    for (int i = 0; i < health_data->exercise_count; i++) {
+    for (i = 0; i < health_data->exercise_count; i++) {
         fprintf(file, "%s - %d kcal\n", health_data->exercises[i].exercise_name, health_data->exercises[i].calories_burned_per_minute);
     }
     fprintf(file, "Total Calories Burned: %d kcal\n", health_data->total_calories_burned);
@@ -43,7 +43,7 @@ void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
     // ToCode: to save the chosen diet and total calories intake 
     fprintf(file, "\n[Diets] \n");
 	// Save the chosen diet and total calories intake
-    for (int i = 0; i < health_data->diet_count; i++) {
+    for (i = 0; i < health_data->diet_count; i++) {
         fprintf(file, "%s - %d kcal\n", health_data->diet[i].food_name, health_data->diet[i].calories_intake);
     }
     fprintf(file, "Total Calories Intake: %d kcal\n", health_data->total_calories_intake);
@@ -76,13 +76,13 @@ void printHealthData(const HealthData* health_data) {
 	// ToCode: to print out the saved history of exercises
 	printf("=========================== History of Exercise =======================\n");
     // Print out the saved history of exercises
-    for (int i = 0; i < health_data->exercise_count; i++) {
+    for (i = 0; i < health_data->exercise_count; i++) {
         printf("Exercise: %s, Calories burned: %d kcal\n", health_data->exercises[i].exercise_name, health_data->exercises[i].calories_burned_per_minute);
     }
     // ToCode: to print out the saved history of diets
     printf("============================= History of Diet =========================\n");
     // Print out the saved history of diets    
-	for (int i = 0; i < health_data->diet_count; i++) {
+	for (i = 0; i < health_data->diet_count; i++) {
         printf("Food: %s, Calories intake: %d kcal\n", health_data->diet[i].food_name, health_data->diet[i].calories_intake);
     }
     printf("=======================================================================\n");
@@ -94,8 +94,6 @@ void printHealthData(const HealthData* health_data) {
     printf("Basal Metabolic Rate: %d kcal\n", BASAL_METABOLIC_RATE);
     printf("Total Calories burned: %d kcal\n", health_data->total_calories_burned);
     printf("Total Calories intake: %d kcal\n", health_data->total_calories_intake);
-    
-	int remaining_calories = health_data->total_calories_intake - BASAL_METABOLIC_RATE - health_data->total_calories_burned;
     printf("The remaining calories: %d kcal\n", remaining_calories);
     printf("=======================================================================\n \n");
     
