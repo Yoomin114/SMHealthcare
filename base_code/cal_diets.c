@@ -43,13 +43,13 @@ void loadDiets(const char* DIETFILEPATH) {
 		// Make sure you read the two items (name and calories) well at this time.
         
         // Copy the string from name to diet_list[diet_list_size].name using the strncpy 
-        strncpy(diet_list[diet_list_size].name, name, MAX_FOOD_NAME_LEN - 1);
+        strncpy(diet_list[diet_list_size].food_name, name, MAX_FOOD_NAME_LEN - 1);
         
         // Explicitly add null characters at the end of a string so that the string can end with null characters
-		diet_list[diet_list_size].name[MAX_FOOD_NAME_LEN - 1] = '\0';
+		diet_list[diet_list_size].food_name[MAX_FOOD_NAME_LEN - 1] = '\0';
        
 	    // Save the calories stored in the calories in the 'diet_list[].calories'.
-        diet_list[diet_list_size].calories = calories;
+        diet_list[diet_list_size].calories_intake = calories;
         diet_list_size++; // Diet information updated
         
         // Stop when the maximum number of diets is reached.
@@ -83,7 +83,7 @@ void inputDiet(HealthData* health_data) {
     printf("The list of diets:\n");
     // Display diet list
     for (i = 0; i < diet_list_size; i++) {
-        printf("%d. %s - %d kcal\n", i + 1, diet_list[i].name, diet_list[i].calories);
+        printf("%d. %s - %d kcal\n", i + 1, diet_list[i].food_name, diet_list[i].calories_intake);
     }
     printf("0. Exit\n\n");
     
@@ -110,7 +110,7 @@ void inputDiet(HealthData* health_data) {
 		// The selected number is greater than or equal to 1 and corresponds to the number in the diet list
         if (choice >= 1 && choice <= diet_list_size) {
             choice--; // Adjust index to match the array
-            printf("Selected diet: %s - %d kcal\n", diet_list[choice].name, diet_list[choice].calories);
+            printf("Selected diet: %s - %d kcal\n", diet_list[choice].food_name, diet_list[choice].calories_intake);
             break;
         }
 		else {
@@ -121,13 +121,13 @@ void inputDiet(HealthData* health_data) {
     // ToCode: to enter the selected diet in the health data
     // Update health data with selected diet
     // Use the pointer to modify the diet_name value of the HealthData structure
-	strncpy(health_data->diet_name, diet_list[choice].name, MAX_FOOD_NAME_LEN - 1);
-    health_data->diet_name[MAX_FOOD_NAME_LEN - 1] = '\0'; // Ensure null-termination
+	strncpy(health_data->diet[health_data->diet_count].food_name, diet_list[choice].food_name, MAX_FOOD_NAME_LEN - 1);
+	health_data->diet[health_data->diet_count].food_name[MAX_FOOD_NAME_LEN - 1] = '\0'; // Ensure null-termination
 
     // ToCode: to enter the total calories intake in the health data
     // Update total calories intake in health data
-	health_data->calories_consumed += diet_list[choice].calories;
+	health_data->total_calories_intake += diet_list[choice].calories_intake;
 	
-	printf("Total calories intake - %d kcal\n", health_data->calories_consumed);
+	printf("Total calories intake - %d kcal\n", health_data->total_calories_intake);
 }
 
