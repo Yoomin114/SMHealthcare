@@ -36,7 +36,6 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     // ToCode: to read a list of the exercises from the given file
     // Read exercise data from a file.
     
-    
     char name[MAX_EXERCISE_NAME_LEN]; // to store the name of the exercise
     int calories;
     
@@ -50,9 +49,9 @@ void loadExercises(const char* EXERCISEFILEPATH) {
         // Explicitly add null characters at the end of a string so that the string can end with null characters
 		exercise_list[exercise_list_size].name[MAX_EXERCISE_NAME_LEN - 1] = '\0';
         
-        // // Save the calories stored in the calories in the 'calories_burned_per_minute'.
+        // Save the calories stored in the calories in the 'calories_burned_per_minute'.
         exercise_list[exercise_list_size].calories_burned_per_minute = calories;
-        exercise_list_size++; // 
+        exercise_list_size++; // Exercise information has been successfully added to the array
         
         // Stop when the maximum number of exercises is reached.
         if (exercise_list_size >= MAX_EXERCISES){
@@ -133,13 +132,13 @@ void inputExercise(HealthData* health_data) {
 			// ToCode: to enter the selected exercise and total calcories burned in the health data
             // Calculate the calories from the selected exercise and the time entered to store the total calories burned in the variable
             int calories_burned = duration * exercise_list[choice].calories_burned_per_minute;
-            health_data->calories_burned += calories_burned;   //Use the pointer to modify the calories_burned value of the HealthData structure
+            health_data->calories_burned += calories_burned;   // Use the pointer to modify the calories_burned value of the HealthData structure
             
             // Update health data with selected exercise and calories burned
     		strncpy(health_data->exercise_name, exercise_list[choice].name, MAX_EXERCISE_NAME_LEN - 1);
     		health_data->exercise_name[MAX_EXERCISE_NAME_LEN - 1] = '\0'; // Ensure null-termination
 
-            printf("Calories burned: %d kcal\n", calories_burned);
+            printf("Total calories burned - %d kcal\n", calories_burned);
             return;
         } 
 		else {
